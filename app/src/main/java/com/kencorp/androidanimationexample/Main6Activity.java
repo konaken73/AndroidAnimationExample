@@ -6,13 +6,18 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
 import android.view.View;
+import android.view.animation.AnticipateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.LinearInterpolator;
 
 public class Main6Activity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private boolean isDetailLayout=false;
+    private ChangeBounds cbTransition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +50,19 @@ public class Main6Activity extends AppCompatActivity {
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(this,layoutId);
 
-        TransitionManager.beginDelayedTransition(constraintLayout);
+        cbTransition = new ChangeBounds();
+
+        //cbTransition.setInterpolator(new AnticipateInterpolator(1.0f));
+        cbTransition.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
+        cbTransition.setDuration(1200);
+
+
+        TransitionManager.beginDelayedTransition(constraintLayout,cbTransition);
 
         constraintSet.applyTo(constraintLayout);
 
-        isDetailLayout = true;
+        if(isDetailLayout)
+            isDetailLayout= false;
+        else isDetailLayout = true;
     }
 }
