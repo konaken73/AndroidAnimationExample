@@ -25,6 +25,12 @@
         android:orderInCategory="100"
         android:title="@string/animationDrawable"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_activity_4"
+        android:orderInCategory="100"
+        android:title="@string/animationDrawable1"
+        app:showAsAction="never" />
+
 
 
 </menu>

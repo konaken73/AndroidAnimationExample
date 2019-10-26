@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                 // set an exit transition
                 //        getWindow().setExitTransition(new Explode());
 
-            } else {
-
             }
         }else  if (id == R.id.action_activity_2) {
             // Check if we're running on Android 5.0 or higher
@@ -110,6 +108,21 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                 // inside your activity (if you did not enable transitions in your theme)
 
                 startActivity(new Intent(this, Main4Activity.class),
+                        ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                // set an exit transition
+                //        getWindow().setExitTransition(new Explode());
+
+            }
+            return true;
+        } if (id == R.id.action_activity_4) {
+            // Check if we're running on Android 5.0 or higher
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                // Apply activity transition
+                // inside your activity (if you did not enable transitions in your theme)
+
+                startActivity(new Intent(this, Main5Activity.class),
                         ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
                 // set an exit transition
