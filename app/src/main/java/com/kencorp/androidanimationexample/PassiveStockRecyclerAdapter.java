@@ -50,7 +50,7 @@ public class PassiveStockRecyclerAdapter extends RecyclerView.Adapter<PassiveSto
         // if(equipmentArrayList.get(position).status.equals("au magasin"))
         //{
 
-            holder.Bind(equipmentArrayList.get(position));
+            holder.Bind(equipmentArrayList.get(position),position);
        // }
     }
 
@@ -59,7 +59,20 @@ public class PassiveStockRecyclerAdapter extends RecyclerView.Adapter<PassiveSto
         return equipmentArrayList.size();
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder{
+
+    public void removeItem(int position) {
+        equipmentArrayList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, equipmentArrayList.size());
+    }
+
+    public void addItem(int position, Equipment equipment) {
+        equipmentArrayList.add(position, equipment);
+        notifyItemInserted(position);
+        notifyItemRangeChanged(position, equipmentArrayList.size());
+    }
+
+    public  class Viewholder extends RecyclerView.ViewHolder {
 
       public TextView name;
       public TextView isbn;
@@ -67,6 +80,9 @@ public class PassiveStockRecyclerAdapter extends RecyclerView.Adapter<PassiveSto
       public ImageView imageView;
       public View view;
         public CardView cardView;
+
+        public ImageView delete;
+        public ImageView autorenew;
 
         public Viewholder(@NonNull View itemView) {
 
@@ -78,11 +94,15 @@ public class PassiveStockRecyclerAdapter extends RecyclerView.Adapter<PassiveSto
             imageView = itemView.findViewById(R.id.img_equipment);
             view = itemView ;
             cardView = itemView.findViewById(R.id.cardView);
+
+            delete = itemView.findViewById(R.id.delete);
+            autorenew = itemView.findViewById(R.id.autorenew);
+
         }
 
 
 
-        public void Bind(final Equipment equipment)
+        public void Bind(final Equipment equipment, final int position)
         {
             Toast.makeText(context,equipment.getId(),Toast.LENGTH_LONG).show();
 
@@ -117,6 +137,7 @@ public class PassiveStockRecyclerAdapter extends RecyclerView.Adapter<PassiveSto
 
 
 
+
             /*
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,9 +146,28 @@ public class PassiveStockRecyclerAdapter extends RecyclerView.Adapter<PassiveSto
                 }
             });*/
 
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    removeItem(position);
+                }
+            });
+            autorenew.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addItem(position,equipment);
+                }
+            });
+
         }
 
+
     }
+
+
+
+
 
 
     @Override

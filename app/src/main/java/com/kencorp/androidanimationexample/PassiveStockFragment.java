@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,6 +55,11 @@ public class PassiveStockFragment extends Fragment {
 
         PassiveStockRecyclerAdapter passiveStockRecyclerAdapter = new PassiveStockRecyclerAdapter(equipmentArrayList,getActivity());
         vList.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        // RecyclerView Animation item
+        vList.setItemAnimator(new DefaultItemAnimator());
+
+
         vList.setAdapter(passiveStockRecyclerAdapter);
         Toast.makeText(getContext(),"on vlist",Toast.LENGTH_LONG).show();
 
