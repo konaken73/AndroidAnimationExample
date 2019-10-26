@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.kencorp.androidanimationexample.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_activity_1"
+        android:orderInCategory="100"
+        android:title="@string/animationDrawable"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_activity_2"
+        android:orderInCategory="100"
+        android:title="@string/animationDrawable"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_activity_3"
+        android:orderInCategory="100"
+        android:title="@string/animationDrawable"
+        app:showAsAction="never" />
+
+
+</menu>
