@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.Scene;
+import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
@@ -14,6 +15,7 @@ import android.transition.TransitionSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.TextView;
 
 public class Main5Activity extends AppCompatActivity {
 
@@ -23,7 +25,11 @@ public class Main5Activity extends AppCompatActivity {
     private  Scene currentScene;
     private  Transition transition;
     private  ViewGroup sceneRoot;
+    private  ViewGroup sceneRoot1;
     private TransitionSet transitionSet;
+    private TextView txtDescription;
+
+    private boolean visibility;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -33,6 +39,7 @@ public class Main5Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main5);
         // Step 1: Create a Scene object for both the starting and ending layout
         sceneRoot =(ViewGroup)findViewById(R.id.sceneRoot);
+        sceneRoot1 =(ViewGroup)findViewById(R.id.sceneRoot1);
 
         scene1 = Scene.getSceneForLayout(sceneRoot, R.layout.scene1, this);
 
@@ -67,6 +74,10 @@ public class Main5Activity extends AppCompatActivity {
 
         scene1.enter();
         currentScene = scene1;
+
+        txtDescription = findViewById(R.id.txvDescription);
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -84,6 +95,40 @@ public class Main5Activity extends AppCompatActivity {
             TransitionManager.go(scene1,transitionSet);
             currentScene=scene1;
 
+        }
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void fadeAnimation(View view) {
+
+        Fade transition = new Fade();
+        TransitionManager.beginDelayedTransition(sceneRoot1, transition);
+
+        if(visibility)
+        {
+            txtDescription.setVisibility(View.INVISIBLE);
+            visibility=false;
+        }else{
+            txtDescription.setVisibility(View.VISIBLE);
+            visibility=true;
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void slideEffect(View view) {
+
+        Slide transition = new Slide();
+        TransitionManager.beginDelayedTransition(sceneRoot1, transition);
+
+        if(visibility)
+        {
+            txtDescription.setVisibility(View.INVISIBLE);
+            visibility=false;
+         }else{
+            txtDescription.setVisibility(View.VISIBLE);
+            visibility=true;
         }
     }
 }
