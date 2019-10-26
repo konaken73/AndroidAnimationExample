@@ -12,6 +12,7 @@ import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
@@ -119,7 +120,7 @@ public class Main5Activity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void slideEffect(View view) {
 
-        Slide transition = new Slide();
+        Slide transition = new Slide(Gravity.END);
         TransitionManager.beginDelayedTransition(sceneRoot1, transition);
 
         if(visibility)
